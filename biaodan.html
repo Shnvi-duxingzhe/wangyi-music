@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>网易云</title>
+    <script src="./font/iconfont.js"></script>
+    <link rel="stylesheet" href="./fontm/iconfont.css">
+    <link rel="stylesheet" href="./swiper-7.2.0/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./css/chushihua.css">
+    <link rel="stylesheet" href="./css/mine.css">
+
+
+    <style>
+        #fm>div
+        {
+            display: flex;
+            height: 32px;
+            line-height: 32px;
+           
+            margin: 5px;
+        }
+        .input{
+            width: 130px;
+            margin-top: 5px;
+            color: red;
+        }
+        .error{
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+            color: green;
+        }
+        #fm>div:last-child{
+            margin-left: 100px;
+            margin-top: 20px;
+        }
+        #fm label
+        {
+            font-size: 13px;
+            width: 150px;
+            text-align: center;
+            padding-right: 10px;
+        }
+        #user,#pwd,#pwd2
+        {
+            flex: grow 1;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post" name="fm" id="fm" onsubmit="return checkform()">
+        <div>
+            <label for="user" >用户名：</label>
+            <input type="text" name="user" id="user" class="input">
+            <span class="error">用户名应为6-9位</span>
+        </div>
+        <div>
+            <label for="pwd" >密码：</label>
+            <input type="password" name="pwd" id="pwd" class="input">
+            <span class="error">密码应为6-9位</span>
+        </div>
+        <div>
+            <label for="pwd2" >重复密码：</label>
+            <input type="password" name="pwd2" id="pwd2" class="input">
+            <span class="error">两次密码应为相同</span>
+        </div>
+        <div>
+            <input type="submit" value="确认注册">
+        </div>
+    </form>
+    
+    <script>
+        var user = document.getElementById("user");
+        var error = document.getElementsByClassName("error");
+        var pwd = document.getElementById("pwd");
+        var pwd2 = document.getElementById("pwd2");
+        
+        user.onchange = checkuser;
+        pwd.onchange = checkpwd;
+        pwd2.onchange = checkpwd2;
+
+        function checkuser(){
+            if(user.value.length > 6 && user.value.length < 9){
+                error[0].style.display = "none";
+                return 1;
+            }
+            else{
+                error[0].style.display = "block";
+                return 0;
+            }
+        }
+        function checkpwd(){
+            if(pwd.value.length > 6 && pwd.value.length < 9){
+                error[1].style.display = "none";
+                return 1;
+            }
+            else{
+                error[1].style.display = "block";
+                return 0;
+            }
+        }
+        function checkpwd2(){
+            if(pwd2.value == pwd2.value ){
+                error[2].style.display = "none";
+                return 1;
+            }
+            else{
+                error[2].style.display = "block";
+                return 0;
+            }
+        }
+        function checkform(){
+            var rs = checkuser()*checkpwd()*checkpwd2();
+            if(rs == 0){
+              return false;  
+            }
+            else{
+               true;
+            }
+        }
+    </script>
+</body>
+</html>
